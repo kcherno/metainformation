@@ -131,3 +131,17 @@ namespace metainformation
 #undef DEFINE_METAINFORMATION_FOR_FUNDAMENTAL_TYPE
 
 }
+
+#include <string>
+
+namespace metainformation
+{
+    template<typename CharT>
+    struct type<std::char_traits<CharT>> final
+    {
+        static std::string name()
+        {
+            return std::string("std::char_traits<").append(type<CharT>::name()).append(">");
+        }
+    };
+}

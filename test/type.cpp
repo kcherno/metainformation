@@ -1,5 +1,7 @@
 #define BOOST_TEST_MODULE type
 
+#include <string>
+
 #include <boost/test/unit_test.hpp>
 
 #include "type.hpp"
@@ -193,3 +195,8 @@ BOOST_AUTO_TEST_CASE(ld)
 }
 
 BOOST_AUTO_TEST_SUITE_END(); // floating_point
+
+BOOST_AUTO_TEST_CASE(char_traits)
+{
+    BOOST_CHECK_EQUAL(metainformation::type<std::char_traits<char>>::name(), "std::char_traits<char>");
+}
