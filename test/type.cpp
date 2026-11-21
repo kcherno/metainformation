@@ -1,5 +1,6 @@
 #define BOOST_TEST_MODULE type
 
+#include <string_view>
 #include <string>
 
 #include <boost/test/unit_test.hpp>
@@ -196,7 +197,24 @@ BOOST_AUTO_TEST_CASE(ld)
 
 BOOST_AUTO_TEST_SUITE_END(); // floating_point
 
+BOOST_AUTO_TEST_SUITE(string);
+
 BOOST_AUTO_TEST_CASE(char_traits)
 {
     BOOST_CHECK_EQUAL(metainformation::type<std::char_traits<char>>::name(), "std::char_traits<char>");
 }
+
+BOOST_AUTO_TEST_CASE(basic_string_view)
+{
+    BOOST_CHECK_EQUAL(
+        metainformation::type<std::string_view>::name(),
+        "std::basic_string_view<char, std::char_traits<char>>"
+    );
+
+    BOOST_CHECK_EQUAL(
+        (metainformation::type<std::basic_string_view<char, std::char_traits<char>>>::name()),
+        "std::basic_string_view<char, std::char_traits<char>>"
+    );
+}
+
+BOOST_AUTO_TEST_SUITE_END(); // string

@@ -144,4 +144,14 @@ namespace metainformation
             return std::string("std::char_traits<").append(type<CharT>::name()).append(">");
         }
     };
+
+    template<typename CharT, typename Traits>
+    struct type<std::basic_string_view<CharT, Traits>> final
+    {
+        static std::string name()
+        {
+            return std::string("std::basic_string_view<")
+                .append(type<CharT>::name()).append(", ").append(type<Traits>::name()).append(">");
+        }
+    };
 }
