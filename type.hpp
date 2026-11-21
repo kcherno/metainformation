@@ -4,7 +4,7 @@
 
 namespace metainformation
 {
-    template<typename... T>
+    template<typename T>
     struct type final
     {
         static constexpr std::string_view name() noexcept = delete;
