@@ -159,13 +159,80 @@ namespace metainformation
         }
     };
 
+    template<typename CharT, typename CharTraits, typename Allocator>
+    struct type<std::basic_string<CharT, CharTraits, Allocator>> final
+    {
+        static std::string name()
+        {
+            return std::string("std::basic_string<")
+                .append(type<CharT>::name())
+                .append(", ")
+                .append(type<CharTraits>::name())
+                .append(", ")
+                .append(type<Allocator>::name())
+                .append(">");
+        }
+    };
+
+    template<typename CharT, typename CharTraits, typename Allocator>
+    struct type<std::basic_string<CharT, CharTraits, Allocator>&> final
+    {
+        static std::string name()
+        {
+            return std::string(type<std::basic_string<CharT, CharTraits, Allocator>>::name()).append("&");
+        }
+    };
+
+    template<typename CharT, typename CharTraits, typename Allocator>
+    struct type<std::basic_string<CharT, CharTraits, Allocator>&&> final
+    {
+        static std::string name()
+        {
+            return std::string(type<std::basic_string<CharT, CharTraits, Allocator>>::name()).append("&&");
+        }
+    };
+
+    template<typename CharT, typename CharTraits, typename Allocator>
+    struct type<const std::basic_string<CharT, CharTraits, Allocator>> final
+    {
+        static std::string name()
+        {
+            return std::string("const ").append(type<std::basic_string<CharT, CharTraits, Allocator>>::name());
+        }
+    };
+
+    template<typename CharT, typename CharTraits, typename Allocator>
+    struct type<const std::basic_string<CharT, CharTraits, Allocator>&> final
+    {
+        static std::string name()
+        {
+            return std::string("const ")
+                .append(type<std::basic_string<CharT, CharTraits, Allocator>>::name())
+                .append("&");
+    }
+};
+
+    template<typename CharT, typename CharTraits, typename Allocator>
+    struct type<const std::basic_string<CharT, CharTraits, Allocator>&&> final
+    {
+        static std::string name()
+        {
+            return std::string("const ")
+                .append(type<std::basic_string<CharT, CharTraits, Allocator>>::name())
+                .append("&&");
+        }
+    };
+
     template<typename CharT, typename Traits>
     struct type<std::basic_string_view<CharT, Traits>> final
     {
         static std::string name()
         {
             return std::string("std::basic_string_view<")
-                .append(type<CharT>::name()).append(", ").append(type<Traits>::name()).append(">");
+                .append(type<CharT>::name())
+                .append(", ")
+                .append(type<Traits>::name())
+                .append(">");
         }
     };
 }

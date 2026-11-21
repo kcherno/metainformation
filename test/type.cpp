@@ -219,6 +219,39 @@ BOOST_AUTO_TEST_CASE(char_traits)
     BOOST_CHECK_EQUAL(metainformation::type<std::char_traits<char>>::name(), "std::char_traits<char>");
 }
 
+BOOST_AUTO_TEST_CASE(basic_string)
+{
+    BOOST_CHECK_EQUAL(
+        metainformation::type<std::string>::name(),
+        "std::basic_string<char, std::char_traits<char>, std::allocator<char>>"
+    );
+
+    BOOST_CHECK_EQUAL(
+        metainformation::type<std::string&>::name(),
+        "std::basic_string<char, std::char_traits<char>, std::allocator<char>>&"
+    );
+
+    BOOST_CHECK_EQUAL(
+        metainformation::type<std::string&&>::name(),
+        "std::basic_string<char, std::char_traits<char>, std::allocator<char>>&&"
+    );
+
+    BOOST_CHECK_EQUAL(
+        metainformation::type<const std::string>::name(),
+        "const std::basic_string<char, std::char_traits<char>, std::allocator<char>>"
+    );
+
+    BOOST_CHECK_EQUAL(
+        metainformation::type<const std::string&>::name(),
+        "const std::basic_string<char, std::char_traits<char>, std::allocator<char>>&"
+    );
+
+    BOOST_CHECK_EQUAL(
+        metainformation::type<const std::string&&>::name(),
+        "const std::basic_string<char, std::char_traits<char>, std::allocator<char>>&&"
+    );
+}
+
 BOOST_AUTO_TEST_CASE(basic_string_view)
 {
     BOOST_CHECK_EQUAL(
