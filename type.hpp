@@ -132,6 +132,20 @@ namespace metainformation
 
 }
 
+#include <memory>
+
+namespace metainformation
+{
+    template<typename T>
+    struct type<std::allocator<T>> final
+    {
+        static std::string name()
+        {
+            return std::string("std::allocator<").append(type<T>::name()).append(">");
+        }
+    };
+}
+
 #include <string>
 
 namespace metainformation

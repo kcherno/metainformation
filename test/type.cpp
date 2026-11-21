@@ -1,6 +1,7 @@
 #define BOOST_TEST_MODULE type
 
 #include <string_view>
+#include <memory>
 #include <string>
 
 #include <boost/test/unit_test.hpp>
@@ -196,6 +197,20 @@ BOOST_AUTO_TEST_CASE(ld)
 }
 
 BOOST_AUTO_TEST_SUITE_END(); // floating_point
+
+BOOST_AUTO_TEST_SUITE(allocator);
+
+BOOST_AUTO_TEST_CASE(character)
+{
+    BOOST_CHECK_EQUAL(metainformation::type<std::allocator<char>>::name(), "std::allocator<char>");
+}
+
+BOOST_AUTO_TEST_CASE(integer)
+{
+    BOOST_CHECK_EQUAL(metainformation::type<std::allocator<int>>::name(), "std::allocator<int>");
+}
+
+BOOST_AUTO_TEST_SUITE_END(); //allocator
 
 BOOST_AUTO_TEST_SUITE(string);
 
